@@ -1,0 +1,39 @@
+{% extends "templates/base.html" %}
+
+{% block title %}ERPNext Job Board{% endblock %}
+
+{% block content %}
+<section class='top-section'>
+	<div class='container'>
+		<h1>ERPNext Job Board</h1>
+		<p class='lead'>
+			Looking for customization or implementation partners? Connect with the community by posting a Job.
+		</p>
+	</div>
+</section>
+<section class='section-padding section-bg'>
+	<div class='container'>
+		<h2 class='text-center'>Open Jobs</h2>
+	{% for item in frappe.get_all("Portal Job", "title, creation, country, description, route",
+		{"show_in_website": 1}, order_by = "creation desc", limit=50) %}
+		<a href="{{ item.route }}" class='card mb-4'>
+			<div class="card-body">
+				<h5>
+					{{ item.title }}
+				</h5>
+				<div>{{ html2text(item.description or "No Description")|truncate(240) }}</div>
+				<div class="text-muted mt-3">
+					{{ frappe.format_date(item.creation) }}
+					<span class='pull-right'>{{ item.country }}</span>
+				</div>
+			</div>
+		</a>
+	{% endfor %}
+	</div>
+</section>
+<section class='section-padding'>
+	<div class='container text-center'>
+		<a class='btn btn-dark' href="/my-jobs">Post A New Job</a>
+	</div>
+</section>
+{% endblock %}

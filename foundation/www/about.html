@@ -1,0 +1,128 @@
+{% extends "templates/base.html" %}
+
+{% from "templates/includes/media.html" import media %}
+
+{% block title %}About ERPNext Foundation{% endblock %}
+
+{% block content%}
+{% set team = [
+	{
+		'name': 'Basawaraj Savalagi',
+		'designation': 'CEO',
+		'bio': 'Basawaraj is a Computer Science Engineer and has previously worked in Deloitte consulting on SAP and SELCO Solar, a social enterprise in multiple roles. He is passionate about radically changing the way SMEs work by driving adoption of ERPNext.',
+		'discuss': 'Basawaraj_Savalagi',
+		'image': 'https://erpnext.org/files/basawaraj.png'
+	},
+	{
+		'name': 'Revant Nandgaonkar',
+		'designation': 'Director, Community Manager',
+		'bio': 'Revant is a free and open source software enthusiast and founder of MN Technique. He began his journey by implementing ERPNext for his family business and now helps businesses onboard on to this true free and open source ERP.',
+		'discuss': 'revant_one',
+		'image': 'https://erpnext.org/files/revant.jpg'
+	},
+	{
+		'name': 'Rushabh Mehta',
+		'designation': 'Director',
+		'bio': "Rushabh is the CEO of Frappe Technologies and the original creator of Frappé Framework and ERPNext. He built ERPNext for his family business and then later published it as an open source project. In his free time, he likes to read and spend time relaxing at home.",
+		'discuss': 'rmehta',
+		'image': '/assets/foundation/img/people/rushabh.jpg'
+	},
+	{
+		'name': 'Nabin Hait',
+		'designation': 'Director',
+		'bio': 'Nabin is the Chief Operating Officer of Frappe Technologies and the lead developer at ERPNext. Nabin is responsible for managing the ERPNext project and managing the team at Frappe. Nabin is a great cook and likes cooking and watching movies in his free time.',
+		'discuss': 'nabinhait',
+		'image': 'https://erpnext.org/files/nabin.jpg'
+	},
+	{
+		'name': 'Prakash Hodage',
+		'designation': 'Director, Accountant',
+		'bio': 'Prakash is the accountant and administrative officer of Frappe Technologies. Prakash has extensive experience in managing accounting and administration and is an expert ERPNext user, also handling user support from time to time. In his free time, Prakash loves to read and help people around him.',
+		'discuss': 'prakash',
+		'image': 'https://erpnext.org/files/prakash.jpg'
+	},
+	{
+		'name': 'You',
+		'designation': 'Apply for a position',
+		'bio': 'If you have a vision for working for an open source community and taking the foundation to new places, we would love to get in touch with you. <a href="/contact" style="font-weight: bold">Get in Touch</a>',
+		'discuss': '',
+		'image': '/assets/foundation/img/people/tux.png'
+	}
+
+]%}
+
+<section class='section-padding splash'
+	style='background-image: url(/assets/foundation/img/community-colored.jpg)'>
+</section>
+<section class='top-section after-splash'>
+	<div class='container'>
+	<h1>ERPNext Foundation</h1>
+	<p class="lead">We are a registered not-for-profit
+		entity representing a community of ERPNext
+		users, developers and service providers.<p>
+	</div>
+</section>
+<section class='section-padding section-bg'>
+	<div class='container'>
+	<div class='text-center'>
+		<h4>Our Vision</h4>
+		<p>Our vision is to provide high quality free software to organizations, enterprises and public institutions around the world, and enable to use it by spreading the knowledge and best practices of running organizations in the 21st Century.</p>
+	</div>
+
+	<div class='card w-400 mt-5'>
+		<div class='card-body'>
+			<h5 class='card-title text-center'>Our Approach</h5>
+
+			<p>To enable this vision we will:
+				<br>1. Create platforms to bring people together.
+				<br>2. Create software and documentation.
+				<br>3. Work with public institutions.
+			</p>
+		</div>
+	</div>
+	<div class='text-center'>
+		<a href="/members" class="mt-4 btn btn-dark">Support us by becoming a Member</a>
+	</div>
+	</div>
+</section>
+
+<section class="section-padding">
+	<div class='container'>
+	<h2 class="text-center">People</h1>
+	<p class='lead text-center mb-5'>We are supported by a great team who have years of experience in ERPNext and a passion for Free and Open Source Software.</p>
+
+	<div class='card-deck'>
+	{% for item in team %}
+		<div class='card mb-4'>
+			<img class="card-img-top greyscale"
+				src="{{ item.image }}" alt="{{ item.name }}">
+			<div class="card-body">
+				<h5>{{ item.name }}</h5>
+				<div>{{ item.designation }}</div>
+				<div class='small'>{{ item.bio }}</div>
+			</div>
+		</div>
+	{% if loop.index is divisibleby 3 %}
+	</div><div class='card-deck'>
+	{% endif %}
+	{% endfor %}
+	</div>
+	</div>
+</section>
+<section class='section-padding section-bg'>
+	<div class='container'>
+		{{ media(
+			"Dhananjay Palishikar",
+			"With significant investment made towards implementing ERPNext, Foundation's commitment to open source will be key in securing our company's future. The idea of a foundation membership helps users like me contribute in a small and meaningful way, while it also provides an opportunity to raise domain specific issues with the foundation team.",
+			"/assets/foundation/img/people/dhananjay.jpg",
+			"Sapcon Instruments",
+			"http://www.sapconinstruments.com")
+		}}
+
+	<p class="mt-4 text-center">
+		<a class="text-muted" href="/contact">Want to talk to someone in the foundation? Get in touch</a>
+	</p>
+	</div>
+</section>
+	{% endblock %}
+
